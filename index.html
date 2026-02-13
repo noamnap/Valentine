@@ -94,25 +94,23 @@ button{
 }
 
 #yesBtn {
-      background: var(--yes);
-      color: white;
-      min-width: 140px;
-      position: absolute;
-      left: 50%;
-      top: 16px;
-      transform: translateX(-110%);
-    }
+  background: var(--yes);
+  color: white;
+  min-width: 140px;
+  position: absolute;
+  left: calc(50% - 150px);
+  top: 16px;
+}
 
-    #noBtn {
-      background: var(--no);
-      color: white;
-      min-width: 120px;
-      position: absolute;
-      left: 50%;
-      top: 16px;
-      transform: translateX(10%);
-      touch-action: none;
-    }
+#noBtn {
+  background: var(--no);
+  color: white;
+  min-width: 140px;
+  position: absolute;
+  left: calc(50% + 10px);
+  top: 16px;
+  touch-action: none;
+}
 
 .hidden{display:none;}
 
@@ -185,9 +183,8 @@ let dodgeCount=0;
 function moveNo(){
   dodgeCount++;
 
-  yesBtn.style.transform =
-    `translate(-50%,0) scale(${1+dodgeCount*.05})`;
-
+  yesBtn.style.scale = yesScale;
+  
   noBtn.style.transform =
     `translate(-50%,0) scale(${Math.max(0.7,1-dodgeCount*.04)})`;
 
