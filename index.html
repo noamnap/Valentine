@@ -9,7 +9,7 @@
 :root{
 --bg1:#fff0f6;
 --bg2:#ffe8f0;
---card:rgba(255,255,255,0.88);
+--card:rgba(255,255,255,0.92);
 --yes:#22c55e;
 --no:#ef4444;
 }
@@ -30,21 +30,24 @@ overflow:hidden;
 width:min(640px,calc(100vw - 24px));
 background:var(--card);
 border-radius:24px;
-padding:26px 20px;
+padding:30px 22px;
 box-shadow:0 18px 40px rgba(0,0,0,0.10);
 text-align:center;
 }
 
-.gif-wrap{
+.image-wrap{
 position:relative;
 display:grid;
 place-items:center;
+margin-bottom:10px;
 }
 
-img{
-width:min(340px,86vw);
-border-radius:18px;
-box-shadow:0 12px 24px rgba(0,0,0,0.10);
+#bearImage{
+width:min(300px,80vw);
+height:auto;
+border-radius:20px;
+box-shadow:0 14px 30px rgba(0,0,0,0.15);
+transition:transform .3s ease;
 }
 
 #heartText{
@@ -52,27 +55,38 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-font-size:28px;
-font-weight:800;
+font-size:30px;
+font-weight:900;
 color:white;
-text-shadow:0 2px 8px rgba(0,0,0,0.55);
+text-shadow:0 3px 10px rgba(0,0,0,0.6);
 display:none;
+}
+
+h1{
+margin:10px 0;
+font-size:30px;
+}
+
+p{
+margin-bottom:20px;
+color:#555;
+font-size:16px;
 }
 
 .buttons{
 position:relative;
 height:160px;
-margin-top:14px;
 }
 
 button{
-border:0;
+border:none;
 border-radius:999px;
-padding:14px 22px;
+padding:14px 24px;
 font-size:18px;
 font-weight:800;
 cursor:pointer;
 position:absolute;
+transition:transform .2s;
 }
 
 #yesBtn{
@@ -95,9 +109,11 @@ transform:translate(-50%,0);
 
 .footer{
 margin-top:10px;
-font-size:12px;
-color:rgba(0,0,0,0.45);
+font-size:13px;
+color:rgba(0,0,0,0.5);
 }
+
+/* Confetti */
 
 .confetti{
 position:fixed;
@@ -113,10 +129,12 @@ transform:translate3d(var(--dx),110vh,0) rotate(var(--rot));
 }
 }
 
+/* Hearts */
+
 .heart{
 position:fixed;
 bottom:-20px;
-font-size:18px;
+font-size:20px;
 animation:floatUp linear forwards;
 }
 
@@ -125,6 +143,7 @@ to{
 transform:translate3d(var(--dx),-110vh,0);
 }
 }
+
 </style>
 </head>
 
@@ -132,10 +151,10 @@ transform:translate3d(var(--dx),-110vh,0);
 
 <main class="card">
 
-<div class="gif-wrap">
+<div class="image-wrap">
 
-<img id="mainImage"
-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Teddy_bear.jpg/512px-Teddy_bear.jpg">
+<img id="bearImage"
+src="https://i.imgur.com/6RLgx.gif">
 
 <div id="heartText">
 Kayla 💗
@@ -177,6 +196,7 @@ const buttonArea=document.getElementById("buttonArea");
 const headline=document.getElementById("headline");
 const subtext=document.getElementById("subtext");
 const heartText=document.getElementById("heartText");
+const bearImage=document.getElementById("bearImage");
 
 let dodgeCount=0;
 
@@ -195,6 +215,7 @@ const y=Math.random()*120;
 
 noBtn.style.left=x+"px";
 noBtn.style.top=y+"px";
+
 }
 
 noBtn.onmouseover=moveNo;
@@ -209,6 +230,8 @@ headline.textContent="YES!!! ❤️";
 
 subtext.textContent=
 "Best decision ever ❤️";
+
+bearImage.style.transform="scale(1.08)";
 
 buttonArea.classList.add("hidden");
 
@@ -244,6 +267,7 @@ document.body.appendChild(el);
 setTimeout(()=>el.remove(),4000);
 
 }
+
 }
 
 function hearts(count){
@@ -272,6 +296,7 @@ document.body.appendChild(el);
 setTimeout(()=>el.remove(),5000);
 
 }
+
 }
 
 </script>
