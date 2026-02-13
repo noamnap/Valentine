@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine?</title>
+  <style>
+    :root {
+      --bg1: #fff0f6;
+      --bg2: #ffe8f0;
+      --card: rgba(255, 255, 255, 0.85);
+      --text: #1f1f1f;
+      --muted: #5a5a5a;
+      --yes: #22c55e;
+      --no: #ef4444;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(1200px 600px at 50% 30%, var(--bg2), var(--bg1));
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .card {
+      width: min(560px, calc(100vw - 32px));
+      background: var(--card);
+      border-radius: 24px;
+      padding: 28px 22px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(26px, 4vw, 34px);
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .gif-wrap {
+      width: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    img {
+      width: min(320px, 80vw);
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.10);
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .buttons {
+      position: relative;
+      margin-top: 18px;
+      height: 140px; /* space for the escaping NO button */
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 120ms ease, filter 120ms ease;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.12);
+      user-select: none;
+    }
+
+    button:active { transform: scale(0.98); }
+
+    #yesBtn {
+      background: var(--yes);
+      color: white;
+      min-width: 140px;
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      transform: translateX(-110%);
+    }
+
+    #noBtn {
+      background: var(--no);
+      color: white;
+      min-width: 120px;
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      transform: translateX(10%);
+      touch-action: none;
+    }
+
+    #yesBtn:hover { filter: brightness(1.05); }
+    #noBtn:hover  { filter: brightness(1.05); }
+
+    /* confetti */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 14px;
+      border-radius: 2px;
+      pointer-events: none;
+      opacity: 0.95;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translate3d(var(--dx), 110vh, 0) rotate(var(--rot));
+        opacity: 1;
+      }
+    }
+
+    .hidden { display: none !important; }
+
+    .footer {
+      margin-top: 6px;
+      font-size: 12px;
+      color: rgba(0,0,0,0.45);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card" aria-live="polite">
+    <div class="gif-wrap">
+      <img id="mainGif" alt="Cute gif" />
+    </div>
+
+    <h1 id="headline">Will you be my Valentine?</h1>
+    <p id="subtext">Be honest. But also be nice.</p>
+
+    <div class="buttons" id="buttonArea">
+      <button id="yesBtn" type="button">YES</button>
+      <button id="noBtn" type="button">NO</button>
+    </div>
+
+    <div class="footer" id="signature">Love, Noam 💗</div>
+  </main>
+
+  <script>
+    /**********************
+     * 1) PUT YOUR GIFS HERE
+     **********************/
+    const GIF_BEG = "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"; // replace
+    const GIF_YAY = "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif";     // replace
+
+    /**********************
+     * Setup
+     **********************/
+    const mainGif   = document.getElementById("mainGif");
+    const headline  = document.getElementById("headline");
+    const subtext   = document.getElementById("subtext");
+    const yesBtn    = document.getElementById("yesBtn");
+    const noBtn     = document.getElementById("noBtn");
+    const buttonArea = document.getElementById("buttonArea");
+
+    mainGif.src = GIF_BEG;
+
+    // Keep NO inside the buttonArea bounds
+    function clamp(val, min, max) {
+      return Math.max(min, Math.min(max, val));
+    }
+
+    // Moves NO to a random position (dramatically unclickable)
+    let dodgeCount = 0;
+    const noPhrases = [
+      "NO",
+      "Are you sure?",
+      "Really?",
+      "Nope",
+      "Try again 😭",
+      "Be nice 😅",
+      "Come onnn",
+      "Not possible",
+      "Pls 😔",
+    ];
+
+    function moveNoButton() {
+      dodgeCount++;
+
+      // Escalate: smaller target and faster movement (but still readable)
+      const scale = clamp(1 - dodgeCount * 0.03, 0.70, 1);
+      noBtn.style.transform = `translate(0, 0) scale(${scale})`;
+
+      // Change text sometimes
+      if (dodgeCount % 2 === 0) {
+        noBtn.textContent = noPhrases[dodgeCount % noPhrases.length];
+      }
+
+      const areaRect = buttonArea.getBoundingClientRect();
+      const btnRect  = noBtn.getBoundingClientRect();
+
+      // Random x/y within area (padding so it doesn't clip)
+      const padding = 10;
+      const maxX = areaRect.width - btnRect.width - padding;
+      const maxY = areaRect.height - btnRect.height - padding;
+
+      const x = clamp(Math.random() * maxX, padding, maxX);
+      const y = clamp(Math.random() * maxY, padding, maxY);
+
+      // Smooth jump
+      noBtn.style.transition = "left 120ms ease, top 120ms ease, transform 120ms ease";
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top  = `${y}px`;
+    }
+
+    // Desktop: dodge on hover and on near approach
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    // Mobile: dodge on touchstart so it is also unclickable
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    }, { passive: false });
+
+    // Extra dramatic: if the cursor gets near NO, it runs away
+    document.addEventListener("mousemove", (e) => {
+      const r = noBtn.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.hypot(dx, dy);
+
+      // Trigger distance increases a bit as dodgeCount increases
+      const trigger = 120 + Math.min(dodgeCount * 6, 120);
+
+      if (dist < trigger) moveNoButton();
+    });
+
+    // If someone actually clicks NO, still dodge and do not allow "no"
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    /**********************
+     * YES click: celebrate
+     **********************/
+    function confettiBurst(count = 140) {
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement("div");
+        el.className = "confetti";
+
+        const startX = Math.random() * window.innerWidth;
+        const dx = (Math.random() - 0.5) * 320 + "px";
+        const rot = (Math.random() * 720 - 360) + "deg";
+        const duration = (Math.random() * 1.2 + 1.2).toFixed(2) + "s";
+
+        el.style.left = startX + "px";
+        el.style.animationDuration = duration;
+        el.style.setProperty("--dx", dx);
+        el.style.setProperty("--rot", rot);
+
+        // Random colors without hardcoding a palette
+        // Use HSL so it looks festive
+        const hue = Math.floor(Math.random() * 360);
+        el.style.background = `hsl(${hue} 90% 60%)`;
+
+        document.body.appendChild(el);
+
+        el.addEventListener("animationend", () => el.remove());
+      }
+    }
+
+    yesBtn.addEventListener("click", () => {
+      mainGif.src = GIF_YAY;
+      headline.textContent = "YAY!!! 💘";
+      subtext.textContent = "Best answer ever. See you soon 😘";
+
+      // Hide buttons
+      buttonArea.classList.add("hidden");
+
+      confettiBurst(160);
+    });
+
+    /**********************
+     * Initialize NO position relative to buttonArea
+     **********************/
+    // Convert NO/YES from percent-based to pixel-based layout after first paint
+    window.addEventListener("load", () => {
+      const areaRect = buttonArea.getBoundingClientRect();
+
+      // Place YES on left side, NO on right side
+      yesBtn.style.left = "36%";
+      yesBtn.style.top = "18px";
+      yesBtn.style.transform = "translate(-50%, 0)";
+
+      noBtn.style.left = "64%";
+      noBtn.style.top = "18px";
+      noBtn.style.transform = "translate(-50%, 0)";
+
+      // After a moment, make NO start dodging if hovered
+      setTimeout(() => { dodgeCount = 0; }, 100);
+    });
+  </script>
+</body>
+</html>
