@@ -7,187 +7,167 @@
 
 <style>
 :root{
---bg1:#fff0f6;
---bg2:#ffe8f0;
---card:rgba(255,255,255,0.92);
---yes:#22c55e;
---no:#ef4444;
+  --bg1:#fff0f6;
+  --bg2:#ffe8f0;
+  --card:rgba(255,255,255,0.92);
+  --yes:#22c55e;
+  --no:#ef4444;
 }
 
 *{box-sizing:border-box;}
 
 body{
-margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-min-height:100vh;
-display:grid;
-place-items:center;
-background:radial-gradient(1200px 600px at 50% 30%,var(--bg2),var(--bg1));
-overflow:hidden;
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(1200px 600px at 50% 30%,var(--bg2),var(--bg1));
+  overflow:hidden;
+  padding:18px;
 }
 
 .card{
-width:min(640px,calc(100vw - 24px));
-background:var(--card);
-border-radius:24px;
-padding:30px 22px;
-box-shadow:0 18px 40px rgba(0,0,0,0.10);
-text-align:center;
+  width:min(760px,calc(100vw - 24px));
+  background:var(--card);
+  border-radius:28px;
+  padding:36px 26px;
+  box-shadow:0 18px 40px rgba(0,0,0,0.10);
+  text-align:center;
 }
 
-.image-wrap{
-position:relative;
-display:grid;
-place-items:center;
-margin-bottom:12px;
+.hero{
+  position:relative;
+  display:grid;
+  place-items:center;
+  margin-bottom:10px;
 }
 
-/* BIG TEDDY EMOJI */
 #bearEmoji{
-font-size:min(140px,30vw);
-line-height:1;
-filter:drop-shadow(0 12px 18px rgba(0,0,0,0.15));
-transition:transform .3s ease;
-user-select:none;
+  font-size:min(150px,34vw);
+  line-height:1;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,0.15));
+  user-select:none;
+  transition:transform .25s ease;
 }
 
+/* overlay text on yes */
 #heartText{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-font-size:32px;
-font-weight:900;
-color:white;
-text-shadow:0 3px 10px rgba(0,0,0,0.6);
-display:none;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:34px;
+  font-weight:900;
+  color:white;
+  text-shadow:0 3px 10px rgba(0,0,0,0.6);
+  display:none;
+  pointer-events:none;
 }
 
 h1{
-margin:10px 0;
-font-size:30px;
+  margin:10px 0;
+  font-size:clamp(28px,4.2vw,44px);
 }
 
 p{
-margin-bottom:20px;
-color:#555;
-font-size:16px;
+  margin:0 0 22px;
+  color:#555;
+  font-size:18px;
 }
 
 .buttons{
-position:relative;
-height:160px;
+  position:relative;
+  height:170px;
+  margin-top:6px;
 }
 
 button{
-border:none;
-border-radius:999px;
-padding:14px 24px;
-font-size:18px;
-font-weight:800;
-cursor:pointer;
-position:absolute;
-transition:transform .2s;
+  border:none;
+  border-radius:999px;
+  padding:16px 30px;
+  font-size:22px;
+  font-weight:900;
+  cursor:pointer;
+  position:absolute;
+  transition:transform .2s;
 }
 
 #yesBtn{
-background:var(--yes);
-color:white;
-left:36%;
-top:18px;
-transform:translate(-50%,0);
+  background:var(--yes);
+  color:white;
+  left:42%;
+  top:18px;
+  transform:translate(-50%,0);
 }
 
 #noBtn{
-background:var(--no);
-color:white;
-left:64%;
-top:18px;
-transform:translate(-50%,0);
+  background:var(--no);
+  color:white;
+  left:58%;
+  top:92px;
+  transform:translate(-50%,0);
+  touch-action:none;
 }
 
 .hidden{display:none;}
 
 .footer{
-margin-top:10px;
-font-size:13px;
-color:rgba(0,0,0,0.5);
+  margin-top:14px;
+  font-size:18px;
+  color:rgba(0,0,0,0.5);
 }
 
+/* confetti */
 .confetti{
-position:fixed;
-top:-12px;
-width:10px;
-height:14px;
-animation:fall linear forwards;
+  position:fixed;
+  top:-12px;
+  width:10px;
+  height:14px;
+  animation:fall linear forwards;
 }
-
 @keyframes fall{
-to{
-transform:translate3d(var(--dx),110vh,0) rotate(var(--rot));
-}
+  to{
+    transform:translate3d(var(--dx),110vh,0) rotate(var(--rot));
+  }
 }
 
+/* floating hearts */
 .heart{
-position:fixed;
-bottom:-20px;
-font-size:20px;
-animation:floatUp linear forwards;
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:floatUp linear forwards;
 }
-
 @keyframes floatUp{
-to{
-transform:translate3d(var(--dx),-110vh,0);
+  to{
+    transform:translate3d(var(--dx),-110vh,0);
+  }
 }
-}
-
 </style>
 </head>
 
 <body>
-
 <main class="card">
 
-<div class="image-wrap">
+  <div class="hero">
+    <div id="bearEmoji">🧸❤️</div>
+    <div id="heartText">Kayla 💗</div>
+  </div>
 
-<div id="bearEmoji">
-🧸❤️
-</div>
+  <h1 id="headline">Kayla, will you be my Valentine?</h1>
+  <p id="subtext">Choose wisely 💗</p>
 
-<div id="heartText">
-Kayla 💗
-</div>
+  <div class="buttons" id="buttonArea">
+    <button id="yesBtn" type="button">YES</button>
+    <button id="noBtn" type="button">NO</button>
+  </div>
 
-</div>
-
-<h1 id="headline">
-Kayla, will you be my Valentine?
-</h1>
-
-<p id="subtext">
-Choose wisely 💗
-</p>
-
-<div class="buttons" id="buttonArea">
-
-<button id="yesBtn">
-YES
-</button>
-
-<button id="noBtn">
-NO
-</button>
-
-</div>
-
-<div class="footer">
-Love, Noam 💗
-</div>
+  <div class="footer">Love, Noam 💗</div>
 
 </main>
 
 <script>
-
 const yesBtn=document.getElementById("yesBtn");
 const noBtn=document.getElementById("noBtn");
 const buttonArea=document.getElementById("buttonArea");
@@ -199,103 +179,73 @@ const bearEmoji=document.getElementById("bearEmoji");
 let dodgeCount=0;
 
 function moveNo(){
+  dodgeCount++;
 
-dodgeCount++;
+  yesBtn.style.transform =
+    `translate(-50%,0) scale(${1+dodgeCount*.05})`;
 
-yesBtn.style.transform=
-`translate(-50%,0) scale(${1+dodgeCount*.05})`;
+  noBtn.style.transform =
+    `translate(-50%,0) scale(${Math.max(0.7,1-dodgeCount*.04)})`;
 
-noBtn.style.transform=
-`translate(-50%,0) scale(${1-dodgeCount*.04})`;
+  // keep inside the button area
+  const area = buttonArea.getBoundingClientRect();
+  const btn = noBtn.getBoundingClientRect();
+  const pad = 10;
 
-const x=Math.random()*300;
-const y=Math.random()*120;
+  const maxX = Math.max(pad, area.width - btn.width - pad);
+  const maxY = Math.max(pad, area.height - btn.height - pad);
 
-noBtn.style.left=x+"px";
-noBtn.style.top=y+"px";
+  const x = pad + Math.random() * (maxX - pad);
+  const y = pad + Math.random() * (maxY - pad);
 
+  noBtn.style.left = x + "px";
+  noBtn.style.top  = y + "px";
 }
 
-noBtn.onmouseover=moveNo;
-noBtn.onclick=moveNo;
-noBtn.ontouchstart=moveNo;
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("click", (e)=>{ e.preventDefault(); moveNo(); });
+noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(); }, {passive:false});
 
-yesBtn.onclick=()=>{
+yesBtn.addEventListener("click", ()=>{
+  heartText.style.display="block";
+  headline.textContent="YES!!! ❤️";
+  subtext.textContent="Best decision ever ❤️";
 
-heartText.style.display="block";
+  bearEmoji.style.transform="scale(1.15)";
+  buttonArea.classList.add("hidden");
 
-headline.textContent="YES!!! ❤️";
-
-subtext.textContent=
-"Best decision ever ❤️";
-
-bearEmoji.style.transform="scale(1.15)";
-
-buttonArea.classList.add("hidden");
-
-confetti(150);
-hearts(40);
-
-};
+  confetti(150);
+  hearts(40);
+});
 
 function confetti(count){
-
-for(let i=0;i<count;i++){
-
-const el=document.createElement("div");
-
-el.className="confetti";
-
-el.style.left=Math.random()*window.innerWidth+"px";
-
-el.style.background=
-`hsl(${Math.random()*360},90%,60%)`;
-
-el.style.animationDuration=
-2+Math.random()*2+"s";
-
-el.style.setProperty("--dx",
-(Math.random()-0.5)*300+"px");
-
-el.style.setProperty("--rot",
-(Math.random()*360)+"deg");
-
-document.body.appendChild(el);
-
-setTimeout(()=>el.remove(),4000);
-
-}
+  for(let i=0;i<count;i++){
+    const el=document.createElement("div");
+    el.className="confetti";
+    el.style.left=Math.random()*window.innerWidth+"px";
+    el.style.background=`hsl(${Math.random()*360},90%,60%)`;
+    el.style.animationDuration=2+Math.random()*2+"s";
+    el.style.setProperty("--dx",(Math.random()-0.5)*300+"px");
+    el.style.setProperty("--rot",(Math.random()*360)+"deg");
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),4000);
+  }
 }
 
 function hearts(count){
-
-const list=["💗","💖","💘","💕"];
-
-for(let i=0;i<count;i++){
-
-const el=document.createElement("div");
-
-el.className="heart";
-
-el.innerText=
-list[Math.floor(Math.random()*list.length)];
-
-el.style.left=Math.random()*window.innerWidth+"px";
-
-el.style.animationDuration=
-3+Math.random()*2+"s";
-
-el.style.setProperty("--dx",
-(Math.random()-0.5)*200+"px");
-
-document.body.appendChild(el);
-
-setTimeout(()=>el.remove(),5000);
-
+  const list=["💗","💖","💘","💕","❤️"];
+  for(let i=0;i<count;i++){
+    const el=document.createElement("div");
+    el.className="heart";
+    el.innerText=list[Math.floor(Math.random()*list.length)];
+    el.style.left=Math.random()*window.innerWidth+"px";
+    el.style.animationDuration=3+Math.random()*2+"s";
+    el.style.setProperty("--dx",(Math.random()-0.5)*200+"px");
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),5000);
+  }
 }
-}
-
 </script>
-
 </body>
 </html>
