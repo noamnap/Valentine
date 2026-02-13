@@ -51,7 +51,6 @@ body{
   transition:transform .25s ease;
 }
 
-/* overlay text on yes */
 #heartText{
   position:absolute;
   top:50%;
@@ -93,23 +92,23 @@ button{
   transition:transform .2s;
 }
 
-#yesBtn {
-  background: var(--yes);
-  color: white;
-  min-width: 140px;
-  position: absolute;
-  left: calc(50% - 150px);
-  top: 16px;
+#yesBtn{
+  background:var(--yes);
+  color:white;
+  min-width:140px;
+  position:absolute;
+  left:calc(50% - 150px);
+  top:16px;
 }
 
-#noBtn {
-  background: var(--no);
-  color: white;
-  min-width: 140px;
-  position: absolute;
-  left: calc(50% + 10px);
-  top: 16px;
-  touch-action: none;
+#noBtn{
+  background:var(--no);
+  color:white;
+  min-width:140px;
+  position:absolute;
+  left:calc(50% + 10px);
+  top:16px;
+  touch-action:none;
 }
 
 .hidden{display:none;}
@@ -120,7 +119,6 @@ button{
   color:rgba(0,0,0,0.5);
 }
 
-/* confetti */
 .confetti{
   position:fixed;
   top:-12px;
@@ -134,7 +132,6 @@ button{
   }
 }
 
-/* floating hearts */
 .heart{
   position:fixed;
   bottom:-20px;
@@ -183,12 +180,15 @@ let dodgeCount=0;
 function moveNo(){
   dodgeCount++;
 
+  // YES grows but stays in place (no transform that would move it)
+  const yesScale = 1 + dodgeCount * 0.05;
   yesBtn.style.scale = yesScale;
-  
-  noBtn.style.transform =
-    `translate(-50%,0) scale(${Math.max(0.7,1-dodgeCount*.04)})`;
 
-  // keep inside the button area
+  // NO gets smaller (no translate that would mess with left/top)
+  const noScale = Math.max(0.7, 1 - dodgeCount * 0.04);
+  noBtn.style.scale = noScale;
+
+  // keep NO inside the button area
   const area = buttonArea.getBoundingClientRect();
   const btn = noBtn.getBoundingClientRect();
   const pad = 10;
