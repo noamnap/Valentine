@@ -133,8 +133,14 @@ transform:translate3d(var(--dx),-110vh,0);
 <main class="card">
 
 <div class="gif-wrap">
-<img id="mainGif">
-<div id="heartText">Kayla 💗</div>
+
+<img id="mainImage"
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Teddy_bear.jpg/512px-Teddy_bear.jpg">
+
+<div id="heartText">
+Kayla 💗
+</div>
+
 </div>
 
 <h1 id="headline">
@@ -146,8 +152,15 @@ Choose wisely 💗
 </p>
 
 <div class="buttons" id="buttonArea">
-<button id="yesBtn">YES</button>
-<button id="noBtn">NO</button>
+
+<button id="yesBtn">
+YES
+</button>
+
+<button id="noBtn">
+NO
+</button>
+
 </div>
 
 <div class="footer">
@@ -158,22 +171,12 @@ Love, Noam 💗
 
 <script>
 
-/* NEW GIFS */
-const GIF_BEG =
-"https://media.giphy.com/media/ULlF8M7u0W1Wg/giphy.gif";
-
-const GIF_YAY =
-"https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif";
-
-const mainGif=document.getElementById("mainGif");
-const headline=document.getElementById("headline");
-const subtext=document.getElementById("subtext");
 const yesBtn=document.getElementById("yesBtn");
 const noBtn=document.getElementById("noBtn");
 const buttonArea=document.getElementById("buttonArea");
+const headline=document.getElementById("headline");
+const subtext=document.getElementById("subtext");
 const heartText=document.getElementById("heartText");
-
-mainGif.src=GIF_BEG;
 
 let dodgeCount=0;
 
@@ -200,14 +203,12 @@ noBtn.ontouchstart=moveNo;
 
 yesBtn.onclick=()=>{
 
-mainGif.src=GIF_YAY;
-
 heartText.style.display="block";
 
-headline.textContent="YES!!! 💘";
+headline.textContent="YES!!! ❤️";
 
 subtext.textContent=
-"I can't wait. This made me really happy 💗";
+"Best decision ever ❤️";
 
 buttonArea.classList.add("hidden");
 
@@ -241,6 +242,7 @@ el.style.setProperty("--rot",
 document.body.appendChild(el);
 
 setTimeout(()=>el.remove(),4000);
+
 }
 }
 
@@ -268,6 +270,7 @@ el.style.setProperty("--dx",
 document.body.appendChild(el);
 
 setTimeout(()=>el.remove(),5000);
+
 }
 }
 
