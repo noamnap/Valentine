@@ -10,8 +10,6 @@
 --bg1:#fff0f6;
 --bg2:#ffe8f0;
 --card:rgba(255,255,255,0.88);
---text:#1f1f1f;
---muted:#5a5a5a;
 --yes:#22c55e;
 --no:#ef4444;
 }
@@ -20,7 +18,7 @@
 
 body{
 margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
 min-height:100vh;
 display:grid;
 place-items:center;
@@ -144,7 +142,7 @@ Kayla, will you be my Valentine?
 </h1>
 
 <p id="subtext">
-Choose wisely 🧸
+Choose wisely 💗
 </p>
 
 <div class="buttons" id="buttonArea">
@@ -160,11 +158,12 @@ Love, Noam 💗
 
 <script>
 
+/* NEW GIFS */
 const GIF_BEG =
-"https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif";
+"https://media.giphy.com/media/ULlF8M7u0W1Wg/giphy.gif";
 
 const GIF_YAY =
-"https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif";
+"https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif";
 
 const mainGif=document.getElementById("mainGif");
 const headline=document.getElementById("headline");
@@ -208,7 +207,7 @@ heartText.style.display="block";
 headline.textContent="YES!!! 💘";
 
 subtext.textContent=
-"Best decision ever. The teddy bear approves 🧸.";
+"I can't wait. This made me really happy 💗";
 
 buttonArea.classList.add("hidden");
 
