@@ -1,364 +1,278 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Kayla 💗</title>
-  <style>
-    :root{
-      --bg1:#fff0f6;
-      --bg2:#ffe8f0;
-      --card:rgba(255,255,255,0.88);
-      --text:#1f1f1f;
-      --muted:#5a5a5a;
-      --yes:#22c55e;
-      --no:#ef4444;
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      background:radial-gradient(1200px 600px at 50% 30%, var(--bg2), var(--bg1));
-      color:var(--text);
-      overflow:hidden;
-      padding:18px;
-    }
-    .card{
-      width:min(640px, calc(100vw - 24px));
-      background:var(--card);
-      border-radius:24px;
-      padding:26px 20px;
-      box-shadow:0 18px 40px rgba(0,0,0,0.10);
-      text-align:center;
-      backdrop-filter:blur(6px);
-    }
-    h1{
-      margin:14px 0 10px;
-      font-size:clamp(24px, 4vw, 34px);
-      letter-spacing:-0.02em;
-      line-height:1.12;
-    }
-    p{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.4;
-    }
-    .gif-wrap{
-      width:100%;
-      display:grid;
-      place-items:center;
-      margin-bottom:6px;
-    }
-    img{
-      width:min(340px, 86vw);
-      height:auto;
-      border-radius:18px;
-      box-shadow:0 12px 24px rgba(0,0,0,0.10);
-      user-select:none;
-      -webkit-user-drag:none;
-    }
-    .buttons{
-      position:relative;
-      margin-top:14px;
-      height:160px;
-    }
-    button{
-      border:0;
-      border-radius:999px;
-      padding:14px 22px;
-      font-size:18px;
-      font-weight:800;
-      cursor:pointer;
-      transition:transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
-      box-shadow:0 10px 18px rgba(0,0,0,0.12);
-      user-select:none;
-      touch-action:manipulation;
-      position:absolute;
-    }
-    button:active{ transform:scale(0.98); }
-    #yesBtn{
-      background:var(--yes);
-      color:#fff;
-      min-width:150px;
-      left:36%;
-      top:18px;
-      transform:translate(-50%, 0) scale(1);
-    }
-    #noBtn{
-      background:var(--no);
-      color:#fff;
-      min-width:130px;
-      left:64%;
-      top:18px;
-      transform:translate(-50%, 0) scale(1);
-      touch-action:none; /* helps prevent tap-click on mobile */
-    }
-    #yesBtn:hover, #noBtn:hover{ filter:brightness(1.05); }
-    .hidden{ display:none !important; }
-    .footer{
-      margin-top:10px;
-      font-size:12px;
-      color:rgba(0,0,0,0.45);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Kayla 💗</title>
 
-    /* Confetti */
-    .confetti{
-      position:fixed;
-      top:-12px;
-      width:10px;
-      height:14px;
-      border-radius:2px;
-      pointer-events:none;
-      opacity:0.95;
-      animation:fall linear forwards;
-    }
-    @keyframes fall{
-      to{
-        transform:translate3d(var(--dx), 110vh, 0) rotate(var(--rot));
-        opacity:1;
-      }
-    }
+<style>
+:root{
+--bg1:#fff0f6;
+--bg2:#ffe8f0;
+--card:rgba(255,255,255,0.88);
+--text:#1f1f1f;
+--muted:#5a5a5a;
+--yes:#22c55e;
+--no:#ef4444;
+}
 
-    /* Floating hearts */
-    .heart{
-      position:fixed;
-      bottom:-20px;
-      font-size:18px;
-      pointer-events:none;
-      opacity:0.95;
-      animation:floatUp linear forwards;
-      filter:drop-shadow(0 8px 12px rgba(0,0,0,0.10));
-    }
-    @keyframes floatUp{
-      to{
-        transform:translate3d(var(--dx), -110vh, 0) rotate(var(--rot));
-        opacity:0.98;
-      }
-    }
+*{box-sizing:border-box;}
 
-    @media (prefers-reduced-motion: reduce){
-      .confetti, .heart{ animation:none !important; }
-      button{ transition:none !important; }
-    }
-  </style>
+body{
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+min-height:100vh;
+display:grid;
+place-items:center;
+background:radial-gradient(1200px 600px at 50% 30%,var(--bg2),var(--bg1));
+overflow:hidden;
+}
+
+.card{
+width:min(640px,calc(100vw - 24px));
+background:var(--card);
+border-radius:24px;
+padding:26px 20px;
+box-shadow:0 18px 40px rgba(0,0,0,0.10);
+text-align:center;
+}
+
+.gif-wrap{
+position:relative;
+display:grid;
+place-items:center;
+}
+
+img{
+width:min(340px,86vw);
+border-radius:18px;
+box-shadow:0 12px 24px rgba(0,0,0,0.10);
+}
+
+#heartText{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:28px;
+font-weight:800;
+color:white;
+text-shadow:0 2px 8px rgba(0,0,0,0.55);
+display:none;
+}
+
+.buttons{
+position:relative;
+height:160px;
+margin-top:14px;
+}
+
+button{
+border:0;
+border-radius:999px;
+padding:14px 22px;
+font-size:18px;
+font-weight:800;
+cursor:pointer;
+position:absolute;
+}
+
+#yesBtn{
+background:var(--yes);
+color:white;
+left:36%;
+top:18px;
+transform:translate(-50%,0);
+}
+
+#noBtn{
+background:var(--no);
+color:white;
+left:64%;
+top:18px;
+transform:translate(-50%,0);
+}
+
+.hidden{display:none;}
+
+.footer{
+margin-top:10px;
+font-size:12px;
+color:rgba(0,0,0,0.45);
+}
+
+.confetti{
+position:fixed;
+top:-12px;
+width:10px;
+height:14px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translate3d(var(--dx),110vh,0) rotate(var(--rot));
+}
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:18px;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+to{
+transform:translate3d(var(--dx),-110vh,0);
+}
+}
+</style>
 </head>
 
 <body>
-  <main class="card" aria-live="polite">
-    <div class="gif-wrap" style="position:relative; display:inline-block;">
-  <img id="mainGif" alt="Teddy bear gif" />
-  <div id="heartText" style="
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    font-size:28px;
-    font-weight:bold;
-    color:white;
-    text-shadow:0 2px 6px rgba(0,0,0,0.5);
-    display:none;
-    pointer-events:none;
-  ">
-    Kayla 💗
-  </div>
+
+<main class="card">
+
+<div class="gif-wrap">
+<img id="mainGif">
+<div id="heartText">Kayla 💗</div>
 </div>
 
-    <h1 id="headline">Kayla, will you be my Valentine?</h1>
-    <p id="subtext">Please choose wisely.</p>
+<h1 id="headline">
+Kayla, will you be my Valentine?
+</h1>
 
-    <div class="buttons" id="buttonArea">
-      <button id="yesBtn" type="button">YES</button>
-      <button id="noBtn" type="button">NO</button>
-    </div>
+<p id="subtext">
+Choose wisely 🧸
+</p>
 
-    <div class="footer" id="signature">Love, Noam 💗</div>
-  </main>
+<div class="buttons" id="buttonArea">
+<button id="yesBtn">YES</button>
+<button id="noBtn">NO</button>
+</div>
 
-  <script>
-    /**********************
-     * TEDDY GIFS
-     * If you want different ones, replace these links.
-     **********************/
-    const GIF_BEG = "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif";      // teddy bear pleading-ish
-    const GIF_YAY = "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif";      // teddy bear celebration-ish
+<div class="footer">
+Love, Noam 💗
+</div>
 
-    const mainGif = document.getElementById("mainGif");
-    const headline = document.getElementById("headline");
-    const subtext = document.getElementById("subtext");
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const buttonArea = document.getElementById("buttonArea");
+</main>
 
-    mainGif.src = GIF_BEG;
+<script>
 
-    // Helpers
-    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+const GIF_BEG =
+"https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif";
 
-    /**********************
-     * NO button behavior
-     **********************/
-    let dodgeCount = 0;
-    const noPhrases = [
-      "NO",
-      "Are you sure?",
-      "Really?",
-      "Kayla please 😭",
-      "Come onnn",
-      "Be nice 😅",
-      "Not possible",
-      "Pls 😔",
-      "My heart 💔",
-      "Say yes 😇"
-    ];
+const GIF_YAY =
+"https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif";
 
-    function moveNoButton(){
-      dodgeCount++;
+const mainGif=document.getElementById("mainGif");
+const headline=document.getElementById("headline");
+const subtext=document.getElementById("subtext");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const buttonArea=document.getElementById("buttonArea");
+const heartText=document.getElementById("heartText");
 
-      // Make YES more appealing with each dodge
-      const yesScale = clamp(1 + dodgeCount * 0.03, 1, 1.45);
-      yesBtn.style.transform = `translate(-50%, 0) scale(${yesScale})`;
-      yesBtn.style.boxShadow = "0 14px 22px rgba(0,0,0,0.14)";
+mainGif.src=GIF_BEG;
 
-      // Make NO smaller over time
-      const noScale = clamp(1 - dodgeCount * 0.03, 0.65, 1);
-      noBtn.style.transform = `translate(-50%, 0) scale(${noScale})`;
+let dodgeCount=0;
 
-      // Change NO label sometimes
-      if (dodgeCount % 2 === 0){
-        noBtn.textContent = noPhrases[dodgeCount % noPhrases.length];
-      }
+function moveNo(){
 
-      const areaRect = buttonArea.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+dodgeCount++;
 
-      // Keep it inside the area
-      const padding = 10;
-      const maxX = areaRect.width - btnRect.width - padding;
-      const maxY = areaRect.height - btnRect.height - padding;
+yesBtn.style.transform=
+`translate(-50%,0) scale(${1+dodgeCount*.05})`;
 
-      const x = clamp(Math.random() * maxX, padding, maxX);
-      const y = clamp(Math.random() * maxY, padding, maxY);
+noBtn.style.transform=
+`translate(-50%,0) scale(${1-dodgeCount*.04})`;
 
-      noBtn.style.transition = "left 140ms ease, top 140ms ease, transform 140ms ease";
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-    }
+const x=Math.random()*300;
+const y=Math.random()*120;
 
-    // Dodge on hover + attempts
-    noBtn.addEventListener("mouseenter", moveNoButton);
-    noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+}
 
-    // Mobile-proof: dodge on touch
-    noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      moveNoButton();
-    }, { passive: false });
+noBtn.onmouseover=moveNo;
+noBtn.onclick=moveNo;
+noBtn.ontouchstart=moveNo;
 
-    // If somehow clicked, still dodge
-    noBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      moveNoButton();
-    });
+yesBtn.onclick=()=>{
 
-    // Extra dramatic: runs away if cursor gets close
-    document.addEventListener("mousemove", (e) => {
-      const r = noBtn.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+mainGif.src=GIF_YAY;
 
-      const trigger = 130 + Math.min(dodgeCount * 8, 150);
-      if (dist < trigger) moveNoButton();
-    });
+heartText.style.display="block";
 
-    /**********************
-     * Celebration
-     **********************/
-    function confettiBurst(count = 180){
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduceMotion) return;
+headline.textContent="YES!!! 💘";
 
-      for (let i = 0; i < count; i++){
-        const el = document.createElement("div");
-        el.className = "confetti";
+subtext.textContent=
+"Best decision ever. The teddy bear approves 🧸.";
 
-        const startX = Math.random() * window.innerWidth;
-        const dx = (Math.random() - 0.5) * 340 + "px";
-        const rot = (Math.random() * 720 - 360) + "deg";
-        const duration = (Math.random() * 1.2 + 1.2).toFixed(2) + "s";
+buttonArea.classList.add("hidden");
 
-        el.style.left = startX + "px";
-        el.style.animationDuration = duration;
-        el.style.setProperty("--dx", dx);
-        el.style.setProperty("--rot", rot);
+confetti(150);
+hearts(40);
 
-        const hue = Math.floor(Math.random() * 360);
-        el.style.background = `hsl(${hue} 90% 60%)`;
+};
 
-        document.body.appendChild(el);
-        el.addEventListener("animationend", () => el.remove());
-      }
-    }
+function confetti(count){
 
-    function heartsFloat(count = 55){
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduceMotion) return;
+for(let i=0;i<count;i++){
 
-      const hearts = ["💗","💖","💘","💕","❤️"];
-      for (let i = 0; i < count; i++){
-        const el = document.createElement("div");
-        el.className = "heart";
-        el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+const el=document.createElement("div");
 
-        const startX = Math.random() * window.innerWidth;
-        const dx = (Math.random() - 0.5) * 260 + "px";
-        const rot = (Math.random() * 160 - 80) + "deg";
-        const duration = (Math.random() * 1.8 + 2.2).toFixed(2) + "s";
+el.className="confetti";
 
-        el.style.left = startX + "px";
-        el.style.animationDuration = duration;
-        el.style.setProperty("--dx", dx);
-        el.style.setProperty("--rot", rot);
+el.style.left=Math.random()*window.innerWidth+"px";
 
-        document.body.appendChild(el);
-        el.addEventListener("animationend", () => el.remove());
-      }
-    }
+el.style.background=
+`hsl(${Math.random()*360},90%,60%)`;
 
-    yesBtn.addEventListener("click", () => {
-      mainGif.src = GIF_YAY;
+el.style.animationDuration=
+2+Math.random()*2+"s";
 
-document.getElementById("heartText").style.display = "block";
-      
-      headline.textContent = "YES!!! 💘";
-      subtext.textContent = "Best answer ever. I can’t wait.";
+el.style.setProperty("--dx",
+(Math.random()-0.5)*300+"px");
 
-      buttonArea.classList.add("hidden");
+el.style.setProperty("--rot",
+(Math.random()*360)+"deg");
 
-      confettiBurst(180);
-      heartsFloat(55);
-      });
+document.body.appendChild(el);
 
-      setTimeout(() => {
-        confettiBurst(120);
-        heartsFloat(35);
-      }, 500);
-    });
+setTimeout(()=>el.remove(),4000);
+}
+}
 
-    // Ensure initial button positioning is stable
-    window.addEventListener("load", () => {
-      yesBtn.style.left = "36%";
-      yesBtn.style.top = "18px";
-      yesBtn.style.transform = "translate(-50%, 0) scale(1)";
+function hearts(count){
 
-      noBtn.style.left = "64%";
-      noBtn.style.top = "18px";
-      noBtn.style.transform = "translate(-50%, 0) scale(1)";
-    });
-  </script>
+const list=["💗","💖","💘","💕"];
+
+for(let i=0;i<count;i++){
+
+const el=document.createElement("div");
+
+el.className="heart";
+
+el.innerText=
+list[Math.floor(Math.random()*list.length)];
+
+el.style.left=Math.random()*window.innerWidth+"px";
+
+el.style.animationDuration=
+3+Math.random()*2+"s";
+
+el.style.setProperty("--dx",
+(Math.random()-0.5)*200+"px");
+
+document.body.appendChild(el);
+
+setTimeout(()=>el.remove(),5000);
+}
+}
+
+</script>
+
 </body>
 </html>
