@@ -44,7 +44,6 @@ margin-bottom:10px;
 
 #bearImage{
 width:min(300px,80vw);
-height:auto;
 border-radius:20px;
 box-shadow:0 14px 30px rgba(0,0,0,0.15);
 transition:transform .3s ease;
@@ -113,8 +112,6 @@ font-size:13px;
 color:rgba(0,0,0,0.5);
 }
 
-/* Confetti */
-
 .confetti{
 position:fixed;
 top:-12px;
@@ -128,8 +125,6 @@ to{
 transform:translate3d(var(--dx),110vh,0) rotate(var(--rot));
 }
 }
-
-/* Hearts */
 
 .heart{
 position:fixed;
@@ -154,7 +149,7 @@ transform:translate3d(var(--dx),-110vh,0);
 <div class="image-wrap">
 
 <img id="bearImage"
-src="https://i.imgur.com/6RLgx.gif">
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Teddy_bear_with_heart.jpg/512px-Teddy_bear_with_heart.jpg">
 
 <div id="heartText">
 Kayla 💗
@@ -172,13 +167,8 @@ Choose wisely 💗
 
 <div class="buttons" id="buttonArea">
 
-<button id="yesBtn">
-YES
-</button>
-
-<button id="noBtn">
-NO
-</button>
+<button id="yesBtn">YES</button>
+<button id="noBtn">NO</button>
 
 </div>
 
@@ -215,7 +205,6 @@ const y=Math.random()*120;
 
 noBtn.style.left=x+"px";
 noBtn.style.top=y+"px";
-
 }
 
 noBtn.onmouseover=moveNo;
@@ -267,7 +256,6 @@ document.body.appendChild(el);
 setTimeout(()=>el.remove(),4000);
 
 }
-
 }
 
 function hearts(count){
@@ -296,7 +284,6 @@ document.body.appendChild(el);
 setTimeout(()=>el.remove(),5000);
 
 }
-
 }
 
 </script>
