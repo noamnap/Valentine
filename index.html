@@ -39,14 +39,16 @@ text-align:center;
 position:relative;
 display:grid;
 place-items:center;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
-#bearImage{
-width:min(300px,80vw);
-border-radius:20px;
-box-shadow:0 14px 30px rgba(0,0,0,0.15);
+/* BIG TEDDY EMOJI */
+#bearEmoji{
+font-size:min(140px,30vw);
+line-height:1;
+filter:drop-shadow(0 12px 18px rgba(0,0,0,0.15));
 transition:transform .3s ease;
+user-select:none;
 }
 
 #heartText{
@@ -54,7 +56,7 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-font-size:30px;
+font-size:32px;
 font-weight:900;
 color:white;
 text-shadow:0 3px 10px rgba(0,0,0,0.6);
@@ -148,8 +150,9 @@ transform:translate3d(var(--dx),-110vh,0);
 
 <div class="image-wrap">
 
-<img id="bearImage"
-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Teddy_bear_with_heart.jpg/512px-Teddy_bear_with_heart.jpg">
+<div id="bearEmoji">
+🧸❤️
+</div>
 
 <div id="heartText">
 Kayla 💗
@@ -167,8 +170,13 @@ Choose wisely 💗
 
 <div class="buttons" id="buttonArea">
 
-<button id="yesBtn">YES</button>
-<button id="noBtn">NO</button>
+<button id="yesBtn">
+YES
+</button>
+
+<button id="noBtn">
+NO
+</button>
 
 </div>
 
@@ -186,7 +194,7 @@ const buttonArea=document.getElementById("buttonArea");
 const headline=document.getElementById("headline");
 const subtext=document.getElementById("subtext");
 const heartText=document.getElementById("heartText");
-const bearImage=document.getElementById("bearImage");
+const bearEmoji=document.getElementById("bearEmoji");
 
 let dodgeCount=0;
 
@@ -205,6 +213,7 @@ const y=Math.random()*120;
 
 noBtn.style.left=x+"px";
 noBtn.style.top=y+"px";
+
 }
 
 noBtn.onmouseover=moveNo;
@@ -220,7 +229,7 @@ headline.textContent="YES!!! ❤️";
 subtext.textContent=
 "Best decision ever ❤️";
 
-bearImage.style.transform="scale(1.08)";
+bearEmoji.style.transform="scale(1.15)";
 
 buttonArea.classList.add("hidden");
 
