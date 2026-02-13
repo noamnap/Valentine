@@ -332,6 +332,8 @@
     yesBtn.addEventListener("click", () => {
       mainGif.src = GIF_YAY;
 
+document.getElementById("heartText").style.display = "block";
+      
       headline.textContent = "YES!!! 💘";
       subtext.textContent = "Best answer ever. I can’t wait.";
 
@@ -339,6 +341,7 @@
 
       confettiBurst(180);
       heartsFloat(55);
+      });
 
       setTimeout(() => {
         confettiBurst(120);
