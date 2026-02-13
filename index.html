@@ -93,21 +93,26 @@ button{
   transition:transform .2s;
 }
 
-#yesBtn{
-  background:var(--yes);
-  color:white;
-  left:50%;
-  top:18px;
-  transform:translate(-110%,0);
-}
+#yesBtn {
+      background: var(--yes);
+      color: white;
+      min-width: 140px;
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      transform: translateX(-110%);
+    }
 
-#noBtn{
-  background:var(--no);
-  color:white;
-  left:50%;
-  top:18px;
-  transform:translate(10%,0);
-}
+    #noBtn {
+      background: var(--no);
+      color: white;
+      min-width: 120px;
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      transform: translateX(10%);
+      touch-action: none;
+    }
 
 .hidden{display:none;}
 
